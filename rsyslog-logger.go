@@ -15,7 +15,7 @@ const CommonPrefixToConfigFiles = "marathon-logger"
 // TODO - Make this configurable
 const RsyslogTemplate = `
 ######################################
-# Created via marathon-alerts,
+# Created via marathon-logger,
 # PLEASE DON'T EDIT THIS FILE MANUALLY
 # Name - {{ .App }}
 # File - {{ .FileName }}
@@ -25,7 +25,7 @@ module(load="imfile")
 
 input(type="imfile"
       File="{{ .CWD }}/{{ .FileName }}"
-      Tag="{{ .App }}"
+			Tag="{{.CleanAppName()}}	{{.TaskID}}"
 			statefile="{{ .TaskID }}"
       Severity="info")
 `
